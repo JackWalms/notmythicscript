@@ -1,6 +1,8 @@
 package net.halflex.mythic;
 
 
+import io.lumine.mythic.bukkit.events.MythicReloadedEvent;
+import io.lumine.mythic.bukkit.utils.Events;
 import io.lumine.mythic.bukkit.utils.Schedulers;
 import io.lumine.mythic.bukkit.utils.plugin.LuminePlugin;
 import io.lumine.mythic.core.config.ConfigExecutor;
@@ -10,6 +12,7 @@ import lombok.experimental.Accessors;
 import net.halflex.mythic.clock.PPClock;
 import net.halflex.mythic.command.BaseCommand;
 import net.halflex.mythic.config.ConfigManager;
+import net.halflex.mythic.items.ItemManager;
 import net.halflex.mythic.nms.disabled.NMSDisabled;
 import net.halflex.mythic.nms.handlers.NMSHandler;
 import net.halflex.mythic.player.clazz.ClassManager;
@@ -26,6 +29,7 @@ public class NotMythicScript extends LuminePlugin {
     @Getter private ProfileManager profileManager;
     @Getter private PlayerDataManager playerDataManager;
     @Getter private SkillManager skillManager;
+    @Getter private ItemManager itemManager;
     @Getter private ClassManager classManager;
     @Getter private ConfigManager configManager;
     private NMSHandler NMSModule;
@@ -41,16 +45,18 @@ public class NotMythicScript extends LuminePlugin {
         this.NMSModule = getNMSModule();
         this.playerDataManager = new PlayerDataManager(this);
         this.profileManager = new ProfileManager(this);
+        this.itemManager = new ItemManager(this);
         this.skillManager = new SkillManager(this);
         this.classManager = new ClassManager(this);
         this.configManager = new ConfigManager(this);
         this.registerCommand("notmythicscript", new BaseCommand(this));
 
-        // load modules
         configManager.load(this);
 
-
         this.bind(Schedulers.async().runRepeating(new PPClock(), 0, ConfigExecutor.ClockInterval));
+        this.bind(Events.subscribe(MythicReloadedEvent.class).handler(event -> {
+           configManager.load(this);
+        }));
     }
 
     @Override

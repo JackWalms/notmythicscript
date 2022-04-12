@@ -7,6 +7,8 @@ import io.lumine.mythic.core.config.MythicConfigImpl;
 import io.lumine.mythic.core.logging.MythicLogger;
 import net.halflex.mythic.NotMythicScript;
 import net.halflex.mythic.config.ConfigurationLoader;
+import net.halflex.mythic.utils.ConsoleColors;
+import net.halflex.mythic.utils.Log;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,9 +25,6 @@ public class ClassManager extends ReloadableModule<NotMythicScript> {
 
     @Override
     public void load(NotMythicScript notMythicScript) {
-        Events.subscribe(MythicReloadedEvent.class).handler(event -> {
-            loadClasses();
-        }).bindWith(this);
 
     }
 
@@ -35,7 +34,7 @@ public class ClassManager extends ReloadableModule<NotMythicScript> {
     }
 
     public void loadClasses(){
-        MythicLogger.log("Loading Classes...");
+        Log.info(ConsoleColors.GREEN + "Loading Classes...");
         ConfigurationLoader<NotMythicScript> loader = new ConfigurationLoader<>("Classes.yml", "Players");
         this.classes.clear();
 
