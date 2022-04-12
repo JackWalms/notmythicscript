@@ -76,8 +76,8 @@ public class PlayerListeners extends ReloadableModule<NotMythicScript> {
                 .handler(this::onJump).bindWith(this);
         Events.subscribe(PlayerItemConsumeEvent.class)
                 .handler(this::onConsumeItem).bindWith(this);
-        Events.subscribe(SheepDyeWoolEvent.class)
-                .handler(this::onDyeSheep).bindWith(this);
+/*        Events.subscribe(SheepDyeWoolEvent.class)
+                .handler(this::onDyeSheep).bindWith(this);*/
 
 
         if (MythicBukkit.inst().getCompatibility().getMythicKeys().isPresent()){
@@ -362,13 +362,13 @@ public class PlayerListeners extends ReloadableModule<NotMythicScript> {
         }
     }
 
-    private void onDyeSheep(SheepDyeWoolEvent event){
+/*    private void onDyeSheep(SheepDyeWoolEvent event){
         Profile caster = getProfile(event.getPlayer());
         boolean b = caster.runSkills(SkillTriggers.CONSUME, BukkitAdapter.adapt(event.getEntity().getLocation()), BukkitAdapter.adapt(event.getEntity()), true, meta -> meta.getVariables().putString("wool-color", event.getColor().toString()));
         if (b){
             event.setCancelled(true);
         }
-    }
+    }*/
 
     private Profile getProfile(Player player){
         return plugin.profileManager().getProfile(player);

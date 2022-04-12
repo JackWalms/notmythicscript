@@ -12,15 +12,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+//FROM MM
 public class ConfigurationLoader<T extends JavaPlugin> {
 
     private File file;
     private FileConfiguration configuration;
     private String defaultFile;
-
-    public ConfigurationLoader(String file){
-        this(file,null);
-    }
 
     public ConfigurationLoader(String file, String folder){
         this.defaultFile = file;
@@ -41,14 +38,6 @@ public class ConfigurationLoader<T extends JavaPlugin> {
         loadFile(!this.file.exists());
 
     }
-
-    public ConfigurationLoader(T plugin, File newfile, String folder) {
-
-        file = newfile;
-
-        loadFile((file == null));
-    }
-
 
     public void loadFile(boolean defaults){
         if (defaults && this.file != null){
