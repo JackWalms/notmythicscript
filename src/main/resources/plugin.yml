@@ -1,0 +1,12 @@
+name: NotMythicScript
+version: '${project.version}'
+main: net.halflex.mythic.NotMythicScript
+api-version: 1.17
+authors: [ macpoopyhead ]
+description: Give players PPs
+depend: [ MythicMobs ]
+commands:
+  pphil:
+    aliases: [pp]
+    description: base command for mythic
+    permission: pp.admin

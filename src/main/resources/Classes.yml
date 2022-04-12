@@ -1,0 +1,6 @@
+Human:
+  Base:
+    MaxHealth: 20
+    Damage: 2
+    MovementSpeed: 0.1
+

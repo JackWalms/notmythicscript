@@ -1,0 +1,10 @@
+Settings:
+  Clock:
+    ClockInterval: 1
+  DefaultData:
+    Level: 1
+    ClassPoints: 1
+    SkillPoints: 1
+    AttributePoints: 1
+  MitigationFormula:
+    Defense: '<damage> * (1 - (<defense> / (<defense> + 100)))'
