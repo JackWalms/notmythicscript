@@ -25,7 +25,7 @@
                     <include>plugin.yml</include>
                     <include>config.yml</include>
                     <include>Classes.yml</include>
-                    <!--<include>items.yml</include>-->
+                    <include>Items.yml</include>
                 </includes>
             </resource>
         </resources>
