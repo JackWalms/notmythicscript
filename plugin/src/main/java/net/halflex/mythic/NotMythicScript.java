@@ -67,7 +67,7 @@ public class NotMythicScript extends LuminePlugin {
         String version = packageName.substring(packageName.lastIndexOf('.') + 1);
 
         try {
-            final Class<?> clazz = Class.forName("net.halflex.mythic.nms.impl." + version + ".NMSHandler_" + version);
+            final Class<?> clazz = Class.forName("net.halflex.mythic.nms.version." + version + ".NMSHandler_" + version);
             if (NMSHandler.class.isAssignableFrom(clazz)) {
                 this.NMSModule = (NMSHandler) clazz.getConstructor().newInstance();
                 MythicLogger.log("Loaded NMS Module for " + packageName);

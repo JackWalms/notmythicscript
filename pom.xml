@@ -6,8 +6,17 @@
 
     <groupId>net.halflex</groupId>
     <artifactId>notmythicscript</artifactId>
-    <packaging>pom</packaging>
     <version>${plugin.version}</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <plugin.name>notmythicscript</plugin.name>
+        <plugin.version>1.0.0-SNAPSHOT</plugin.version>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
     <modules>
         <module>plugin</module>
@@ -15,14 +24,16 @@
         <module>v1_17_R1</module>
         <module>v1_18_R1</module>
         <module>v1_18_R2</module>
+
     </modules>
 
-    <properties>
-        <plugin.name>notmythicscript</plugin.name>
-        <plugin.version>1.0.0-SNAPSHOT</plugin.version>
-        <java.version>17</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <repositories>
+        <repository>
+            <id>lumine</id>
+            <url>https://mvn.lumine.io/repository/maven/</url>
+        </repository>
+    </repositories>
+
 
     <pluginRepositories>
         <pluginRepository>
@@ -31,4 +42,11 @@
         </pluginRepository>
     </pluginRepositories>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub halflex Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/halflex/notmythicscript</url>
+        </repository>
+    </distributionManagement>
 </project>
