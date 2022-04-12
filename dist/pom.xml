@@ -52,12 +52,12 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <relocations>
+                            <!--<relocations>
                                 <relocation>
                                     <pattern>net.halflex.helper</pattern>
                                     <shadedPattern>net.halflex.backpack.utils.helper</shadedPattern>
                                 </relocation>
-                            </relocations>
+                            </relocations>-->
                             <minimizeJar>false</minimizeJar>
                         </configuration>
                     </execution>
