@@ -44,7 +44,7 @@ public class NotMythicScript extends LuminePlugin {
         this.skillManager = new SkillManager(this);
         this.classManager = new ClassManager(this);
         this.configManager = new ConfigManager(this);
-        this.registerCommand("pphil", new BaseCommand(this));
+        this.registerCommand("notmythicscript", new BaseCommand(this));
 
         // load modules
         configManager.load(this);

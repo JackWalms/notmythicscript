@@ -3,4 +3,8 @@ Human:
     MaxHealth: 20
     Damage: 2
     MovementSpeed: 0.1
-
+  Skills:
+    - skill{s=[
+        - cancelevent
+        - message{m="Don't jump!"}
+        ];sync=true} @Self ~onJump

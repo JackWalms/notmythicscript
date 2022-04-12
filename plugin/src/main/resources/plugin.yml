@@ -6,7 +6,7 @@ authors: [ macpoopyhead ]
 description: Give players PPs
 depend: [ MythicMobs ]
 commands:
-  pphil:
-    aliases: [pp]
-    description: base command for mythic
-    permission: pp.admin
+  notmythicscript:
+    aliases: [nms]
+    description: base command for notmythicscript
+    permission: nms.admin
