@@ -4,16 +4,20 @@ package net.halflex.mythic;
 import io.lumine.mythic.bukkit.utils.Schedulers;
 import io.lumine.mythic.bukkit.utils.plugin.LuminePlugin;
 import io.lumine.mythic.core.config.ConfigExecutor;
+import io.lumine.mythic.core.logging.MythicLogger;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 import net.halflex.mythic.clock.PPClock;
 import net.halflex.mythic.command.BaseCommand;
 import net.halflex.mythic.config.ConfigManager;
+import net.halflex.mythic.nms.disabled.NMSDisabled;
+import net.halflex.mythic.nms.handlers.NMSHandler;
 import net.halflex.mythic.player.clazz.ClassManager;
 import net.halflex.mythic.player.data.PlayerDataManager;
 import net.halflex.mythic.player.profile.ProfileManager;
 import net.halflex.mythic.skills.PlayerTriggers;
 import net.halflex.mythic.skills.SkillManager;
+import org.bukkit.Bukkit;
 
 @Accessors(fluent = true)
 public class NotMythicScript extends LuminePlugin {
@@ -24,6 +28,7 @@ public class NotMythicScript extends LuminePlugin {
     @Getter private SkillManager skillManager;
     @Getter private ClassManager classManager;
     @Getter private ConfigManager configManager;
+    private NMSHandler NMSModule;
 
     @Override
     public void load(){
@@ -33,6 +38,7 @@ public class NotMythicScript extends LuminePlugin {
 
     @Override
     public void enable(){
+        this.NMSModule = getNMSModule();
         this.playerDataManager = new PlayerDataManager(this);
         this.profileManager = new ProfileManager(this);
         this.skillManager = new SkillManager(this);
@@ -50,6 +56,29 @@ public class NotMythicScript extends LuminePlugin {
     @Override
     public void disable(){
 
+    }
+
+    public NMSHandler getNMSModule() {
+        if (this.NMSModule != null) return this.NMSModule;
+
+        this.NMSModule = new NMSDisabled();
+
+        String packageName = Bukkit.getServer().getClass().getPackage().getName();
+        String version = packageName.substring(packageName.lastIndexOf('.') + 1);
+
+        try {
+            final Class<?> clazz = Class.forName("net.halflex.mythic.nms.impl." + version + ".NMSHandler_" + version);
+            if (NMSHandler.class.isAssignableFrom(clazz)) {
+                this.NMSModule = (NMSHandler) clazz.getConstructor().newInstance();
+                MythicLogger.log("Loaded NMS Module for " + packageName);
+            }
+        } catch (final Exception e) {
+            //e.printStackTrace();
+            MythicLogger.error("NotMythicScript does not support this version of CraftBukkit - " + packageName
+                    + " - Please update your server!");
+        }
+
+        return this.NMSModule;
     }
 
 }
