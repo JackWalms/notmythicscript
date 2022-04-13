@@ -33,7 +33,7 @@ public class ConfigManager extends ReloadableModule<NotMythicScript> {
 
         Log.info(ConsoleColors.CYAN + "----- Mythic RPG ------");
         Log.info("Loaded " + plugin.classManager().getClassNames().size() + " class" + ((plugin.classManager().getClassNames().size() == 1) ? "": "es!"));
-        Log.info("Loaded " + plugin.itemManager().getItemNames().size() + " item" + ((plugin.itemManager().getItemNames().size() == 1) ? "": "s!"));
+        Log.info("Loaded " + plugin.itemManager().getArtifactNames().size() + " item" + ((plugin.itemManager().getArtifactNames().size() == 1) ? "": "s!"));
     }
 
     @Override
