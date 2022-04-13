@@ -3,3 +3,4 @@ To Do List:
 - [ ] more class options
 - [ ] professions
 - [ ] custom items
+- [ ] get bitches
